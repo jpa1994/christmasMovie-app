@@ -5,6 +5,12 @@ const programDao= {
     ...require('./api/programDao')
 }
 
+const producerDao= {
+    ...daoCommon,
+    ...require('./api/producerDao')
+}
+
 module.exports = {
-    programDao
+    programDao,
+    producerDao
 }

@@ -7,6 +7,7 @@ const daoCommon = {
 
         connect.query(
             `SELECT * FROM ${table};`,
+
             (error, rows)=> {
                 queryAction(res, error, rows, table)
             }
@@ -25,6 +26,32 @@ const daoCommon = {
         )
     },
 
+    countAll: (res, table)=> {
+        connect.query(
+            `SELECT COUNT(*) FROM ${table};`,
+
+            (error, rows)=> {
+                queryAction(res, error, rows, table)
+            }
+
+        )
+    },
+
+    search: (res, table, column, query) => {
+    // Replace apostrophes with double single quotes => developer.mozilla.org
+    const safeQuery = query.replace(/'/g, "''");
+
+    connect.query(
+            `SELECT * FROM ${table} WHERE ${column} LIKE '%${safeQuery}%';`,
+
+            (error, rows) => {
+                queryAction(res, error, rows, table);
+            }
+        )
+
+    },
+
+
     sort: (res, table, sorter)=> {
 
         connect.query(
@@ -33,6 +60,9 @@ const daoCommon = {
             (error, rows)=> {
                 queryAction(res, error, rows, table)
             }
+
         )
     }
 }
+
+module.exports = daoCommon

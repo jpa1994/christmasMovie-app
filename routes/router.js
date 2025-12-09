@@ -6,19 +6,21 @@ const PORT = process.env.PORT || 3001
 router.get('/', (req,res)=> {
     res.render('pages/home', {
         title: 'christmas-movie-app home',
-        name: "John's Christmas Movie App"
+        name: "John's Christmas Program App"
     })
 })
 
 // Root Route => http://localhost:3001/api
 router.get('/api', (req,res)=> {
     res.json({
-        'All Programs': `http://localhost:${PORT}/api/program`
+        'All Programs': `http://localhost:${PORT}/api/program`,
+        'All Producers': `http://localhost:${PORT}/api/producer`
     })
 })
 
 const endpoints = [
-    'program'
+    'program',
+    'producer'
 ]
 
 endpoints.forEach(endpoint => {
