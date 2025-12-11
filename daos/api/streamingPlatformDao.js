@@ -1,29 +1,13 @@
 const con = require('../../config/dbconfig')
 const { queryAction } = require('../../helpers/queryAction')
 
-const producerDao = {
+const streamingPlatformDao = {
 
-    table: 'producer',
+    table: 'streaming_platform',
 
-    findProducerInfo: (res, table)=> {
+    findStreamingPlatformInfo: (res, table)=> {
 
-        // const sql = `SELECT pr.producer_id, pr.first_name, pr.last_name
-        // FROM producer pr;`
-
-        const sql = `SELECT 
-        pr.producer_id,
-        CASE 
-            WHEN pr.first_name IS NULL THEN ''
-            ELSE pr.first_name
-        END first_name,
-        CASE
-            WHEN pr.last_name IS NULL THEN ''
-            ELSE pr.last_name
-        END last_name,
-        p.title FROM producer pr
-        LEFT OUTER JOIN program_to_producer ptp USING (producer_id)
-        LEFT OUTER JOIN program p USING (program_id)
-        ORDER BY p.producer_id;`
+        const sql = `SELECT sp.streaming_platform_id, sp.streaming_platform FROM streaming_platform sp;`
 
         con.query(
             sql,
@@ -33,24 +17,31 @@ const producerDao = {
         )
     },
 
-    findProducerByFirstNameFirstLetterB: (res, table)=> {
+    findStreamingPlatformCount: (res, table)=> {
 
-        const sql = `SELECT pr.producer_id, pr.first_name, pr.last_name FROM producer pr
-        WHERE first_name LIKE 'b%';`
-    
+        const sql = `SELECT sp.streaming_platform_id, sp.streaming_platform,
+        COUNT(pts.program_id) AS platform_count
+        FROM streaming_platform sp
+        LEFT JOIN program_to_streaming pts
+        ON sp.streaming_platform_id = pts.streaming_platform_id
+        GROUP BY sp.streaming_platform_id, sp.streaming_platform
+        ORDER BY platform_count DESC;`
+
         con.query(
             sql,
-            (error, rows) => {
-            queryAction(res, error, rows, table)
+            (error, rows)=> {
+                queryAction(res, error, rows, table)
             }
         )
-
     },
 
-    findProgramsByProducer: (res, table, id)=> {
+    findProgramsByStreamingPlatform: (res, table, id)=> {
         let programs = []
 
-        let sql = `SELECT program_id, title, yr_released, img_url, description FROM program WHERE producer_id = ${id};`
+        let sql = `SELECT p.program_id, p.title, p.yr_released, p.program_rating, p.rating, p.img_url, p.description
+        FROM program p
+        JOIN program_to_streaming pts USING (program_id)
+        WHERE pts.streaming_platform_id = ${id};`
 
         // .execute(query, callback function)
         // .exectute(query, array, callback function)
@@ -64,12 +55,12 @@ const producerDao = {
                     // console.log(programs) // test here
                     con.execute(
                         `SELECT * FROM ${table} WHERE ${table}_id = ${id};`,
-                        (error, rows)=> {
-                            rows.forEach(row => {
+                        (error, rows2)=> {
+                            rows2.forEach(row => {
                                 row.programs = programs
                             })
                             if (!error) {
-                                res.json(...rows)
+                                res.json(...rows2)
                             } else {
                                 console.log('DAO Error:', error)
                             }
@@ -87,4 +78,4 @@ const producerDao = {
     }
 }
 
-module.exports = producerDao
+module.exports = streamingPlatformDao

@@ -38,8 +38,8 @@ const daoCommon = {
     },
 
     search: (res, table, column, query) => {
-    // Replace apostrophes with double single quotes => developer.mozilla.org
-    const safeQuery = query.replace(/'/g, "''");
+    
+    const safeQuery = query.replace(/'/g, "''"); // Replace apostrophes with double single quotes => developer.mozilla.org
 
     connect.query(
             `SELECT * FROM ${table} WHERE ${column} LIKE '%${safeQuery}%';`,

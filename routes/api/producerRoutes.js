@@ -18,6 +18,21 @@ router.get('/sort/:sorter', (req, res)=> {
     dao.sort(res, dao.table, req.params.sorter)
 })
 
+// http://localhost:3001/api/producer/search/:column/:query
+router.get('/search/:column/:query', (req, res) => {
+    dao.search(res, dao.table, req.params.column, req.params.query);
+})
+
+// http://localhost:3001/api/producer/firstNameFirstLetterB
+router.get('/firstNameFirstLetterB', (req, res)=> {
+    dao.findProducerByFirstNameFirstLetterB(res, dao.table, req.params.sorter)
+})  
+
+// http://localhost:3001/api/producer/:id/findProgramsByProducer
+router.get('/:id/findProgramsByProducer', (req, res)=> {
+    dao.findProgramsByProducer(res, dao.table, req.params.id)
+}) 
+
 // http://localhost:3001/api/producer/:id
 router.get('/:id', (req, res)=> {
     dao.findById(res, dao.table, req.params.id)

@@ -20,6 +20,35 @@ const programDao = {
                 queryAction(res, error, rows, table)
             }
         )
+    },
+
+    findProgramRatingTV_Y: (res, table)=> {
+
+        const sql = `SELECT p.program_id, p.title, p.program_rating
+        FROM program AS p
+        WHERE p.program_rating = 'TV-Y';`
+
+        con.query(
+            sql,
+            (error, rows)=> {
+                queryAction(res, error, rows, table)
+            }
+        )
+    },
+
+    findFiveHighestRatings: (res, table)=> {
+
+        const sql = `SELECT p.program_id, p.title, p.rating, p.yr_released
+        FROM program AS p
+        ORDER BY p.rating DESC
+        LIMIT 5;`
+
+        con.query(
+            sql,
+            (error, rows)=> {
+                queryAction(res, error, rows, table)
+            }
+        )
     }
 }
 

@@ -14,13 +14,19 @@ router.get('/', (req,res)=> {
 router.get('/api', (req,res)=> {
     res.json({
         'All Programs': `http://localhost:${PORT}/api/program`,
-        'All Producers': `http://localhost:${PORT}/api/producer`
+        'All Producers': `http://localhost:${PORT}/api/producer`,
+        'All Directors': `http://localhost:${PORT}/api/director`,
+        'All Actors': `http://localhost:${PORT}/api/actor`,
+        'All Streaming Platforms': `http://localhost:${PORT}/api/streaming_platform`
     })
 })
 
 const endpoints = [
     'program',
-    'producer'
+    'producer',
+    'director',
+    'actor',
+    'streaming_platform'
 ]
 
 endpoints.forEach(endpoint => {
