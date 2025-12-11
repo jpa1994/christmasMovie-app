@@ -23,12 +23,12 @@ router.get('/search/:column/:query', (req, res) => {
     dao.search(res, dao.table, req.params.column, req.params.query);
 })
 
-// http://localhost:3001/api/program/findProgramRating
+// http://localhost:3001/api/program/get_program_rating/program_rating/TV-Y
 router.get('/get_program_rating/program_rating/TV-Y', (req, res)=> {
     dao.findProgramRatingTV_Y(res, dao.table)
 })
 
-// http://localhost:3001/api/program/5highestRatings
+// http://localhost:3001/api/program/get_rating/5highestRatings
 router.get('/get_rating/5highestRatings', (req, res)=> {
     dao.findFiveHighestRatings(res, dao.table)
 })

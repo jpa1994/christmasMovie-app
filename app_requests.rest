@@ -7,7 +7,7 @@ GET http://localhost:3001/api/actor/count
 # GET actors Order by (sort)
 GET http://localhost:3001/api/actor/sort/first_name
 
-# GET actors by search, column and query by your choosing (search)
+# GET actors by search, column and query of your choosing (search)
 GET http://localhost:3001/api/actor/search/first_name/tim
 
 # GET actors by first name, last letter y
@@ -18,3 +18,95 @@ GET http://localhost:3001/api/actor/findActorByLastNameLastLetterE
 
 # GET single actor (id)
 GET http://localhost:3001/api/actor/4
+
+##############################################################
+
+# GET all directors
+GET http://localhost:3001/api/director
+
+# GET directors count by (count)
+GET http://localhost:3001/api/director/count
+
+# GET directors Order by (sort)
+GET http://localhost:3001/api/director/sort/last_name
+
+# GET directors by search, column and query of your choosing (search)
+GET http://localhost:3001/api/director/search/last_name/bass
+
+# GET directors by last name, first letter M
+GET http://localhost:3001/api/director/lastNameFirstLetterM
+
+# GET directors with more than one program
+GET http://localhost:3001/api/director/countDirectorsWithMoreThanOneProgram
+
+# GET single director (id)
+GET http://localhost:3001/api/director/5
+
+############################################################
+
+# GET all producers
+GET http://localhost:3001/api/producer
+
+# GET producers count by (count)
+GET http://localhost:3001/api/producer/count
+
+# GET producers Order by (sort)
+http://localhost:3001/api/producer/sort/first_name
+
+# GET producers by search, column and query of your choosing (search)
+GET http://localhost:3001/api/producer/search/first_name/david
+
+# GET producers by first name, first letter B
+GET http://localhost:3001/api/producer/firstNameFirstLetterB
+
+# GET programs by producer
+GET http://localhost:3001/api/producer/4/findProgramsByProducer
+
+# GET single producer (id)
+GET http://localhost:3001/api/producer/5
+
+#############################################################
+
+# GET all programs
+GET http://localhost:3001/api/program
+
+# GET programs count by (count)
+GET http://localhost:3001/api/program/count
+
+# GET programs Order by (sort)
+GET http://localhost:3001/api/program/sort/rating
+
+# GET programs by search, column and query of your choosing (search)
+GET http://localhost:3001/api/program/search/format/stop-motion
+
+# GET programs by program rating TV-Y
+GET http://localhost:3001/api/program/get_program_rating/program_rating/TV-Y
+
+# GET programs by five highest ratings
+GET http://localhost:3001/api/program/get_rating/5highestRatings
+
+# GET single program (id)
+GET http://localhost:3001/api/program/7
+
+##############################################################
+
+# GET all streaming platforms
+GET http://localhost:3001/api/streaming_platform
+
+# GET streaming platforms count by (count)
+GET http://localhost:3001/api/streaming_platform/count
+
+# GET streaming platforms Order by (sort)
+GET http://localhost:3001/api/streaming_platform/sort/streaming_platform
+
+# GET streaming platforms by search, column and query of your choosing (search)
+GET http://localhost:3001/api/streaming_platform/search/streaming_platform/hbomax
+
+# GET streaming platforms Order by number of streaming programs
+GET http://localhost:3001/api/streaming_platform/number_of_streaming_programs
+
+# GET programs by streaming streaming platform
+GET http://localhost:3001/api/streaming_platform/4/findProgramsByStreamingPlatform
+
+# GET single streaming platform (id)
+GET http://localhost:3001/api/streaming_platform/6

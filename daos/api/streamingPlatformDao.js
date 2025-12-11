@@ -17,15 +17,15 @@ const streamingPlatformDao = {
         )
     },
 
-    findStreamingPlatformCount: (res, table)=> {
+    findStreamingPlatformProgramCount: (res, table)=> {
 
         const sql = `SELECT sp.streaming_platform_id, sp.streaming_platform,
-        COUNT(pts.program_id) AS platform_count
+        COUNT(pts.program_id) AS number_of_programs
         FROM streaming_platform sp
         LEFT JOIN program_to_streaming pts
         ON sp.streaming_platform_id = pts.streaming_platform_id
         GROUP BY sp.streaming_platform_id, sp.streaming_platform
-        ORDER BY platform_count DESC;`
+        ORDER BY number_of_programs DESC;`
 
         con.query(
             sql,
@@ -38,7 +38,7 @@ const streamingPlatformDao = {
     findProgramsByStreamingPlatform: (res, table, id)=> {
         let programs = []
 
-        let sql = `SELECT p.program_id, p.title, p.yr_released, p.program_rating, p.rating, p.img_url, p.description
+        let sql = `SELECT p.program_id, p.title, p.yr_released, p.runtime, p.producer_id, p.format, p.program_rating, p.rating, p.img_url, p.description
         FROM program p
         JOIN program_to_streaming pts USING (program_id)
         WHERE pts.streaming_platform_id = ${id};`

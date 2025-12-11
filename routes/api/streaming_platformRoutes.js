@@ -23,12 +23,12 @@ router.get('/search/:column/:query', (req, res) => {
     dao.search(res, dao.table, req.params.column, req.params.query);
 })
 
-// http://localhost:3001/api/streaming_platform/streaming_platform_count
-router.get('/streaming_platform_count', (req, res)=> {
-    dao.findStreamingPlatformCount(res, dao.table, req.params.sorter)
+// http://localhost:3001/api/streaming_platform/number_of_streaming_programs
+router.get('/number_of_streaming_programs', (req, res)=> {
+    dao.findStreamingPlatformProgramCount(res, dao.table, req.params.sorter)
 })
 
-// http://localhost:3001/api/streaming_platform/findProgramsByStreamingPlatform
+// http://localhost:3001/api/streaming_platform/:id/findProgramsByStreamingPlatform
 router.get('/:id/findProgramsByStreamingPlatform', (req, res)=> {
     dao.findProgramsByStreamingPlatform(res, dao.table, req.params.id)
 })
