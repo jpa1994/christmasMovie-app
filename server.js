@@ -9,6 +9,7 @@ const helmet = require('helmet')
 const cors = require('cors')
 
 // Configuring helmet
+// server.use(helmst())
 server.use(helmet.contentSecurityPolicy({
     useDefaults: true,
     crossOriginResourcePolicy: false,
