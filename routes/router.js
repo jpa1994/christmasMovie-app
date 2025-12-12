@@ -34,6 +34,34 @@ router.get('/program', (req, res)=> {
         })
 })
 
+// Program TV-Y
+router.get('/program/TV-Y', (req, res) => { 
+    const url = 'http://localhost:3001/api/program/get_program_rating/program_rating/TV-Y';
+
+    const pageData = paginationResults(req);
+    let programArr = [];
+
+    axios.get(url)
+        .then(resp => {
+            const programArrData = buildProgramArr(
+                resp.data,
+                programArr,
+                pageData.startIdx,
+                pageData.endIdx,
+                pageData.page
+            );
+
+            res.render('pages/program', {
+                title: 'Programs Rated TV-Y',
+                name: 'TV-Y Programs',
+                data: programArrData.arr,
+                prev: programArrData.prev,
+                next: programArrData.next,
+                endpoint: 'program'
+            });
+        });
+});
+
 // Actor
 router.get('/actor', (req, res)=> {
     const url = 'http://localhost:3001/api/actor'
@@ -52,6 +80,72 @@ router.get('/actor', (req, res)=> {
                 prev: programArrData.prev,
                 next: programArrData.next,
                 endpoint: "actor"
+            })
+        })
+})
+
+// Director
+router.get('/director', (req, res)=> {
+    const url = 'http://localhost:3001/api/director'
+    const pageData = paginationResults(req)
+    let programArr = []
+
+    axios.get(url)
+        .then(resp => {
+            const programArrData = buildProgramArr(resp.data, programArr, pageData.startIdx, pageData.endIdx, pageData.page)
+
+            //console.log(programArrData)
+            res.render('pages/director', {
+                title: "director",
+                name: "All Directors",
+                data: programArrData.arr,
+                prev: programArrData.prev,
+                next: programArrData.next,
+                endpoint: "director"
+            })
+        })
+})
+
+// Producer
+router.get('/producer', (req, res)=> {
+    const url = 'http://localhost:3001/api/producer'
+    const pageData = paginationResults(req)
+    let programArr = []
+
+    axios.get(url)
+        .then(resp => {
+            const programArrData = buildProgramArr(resp.data, programArr, pageData.startIdx, pageData.endIdx, pageData.page)
+
+            //console.log(programArrData)
+            res.render('pages/producer', {
+                title: "producer",
+                name: "All Producers",
+                data: programArrData.arr,
+                prev: programArrData.prev,
+                next: programArrData.next,
+                endpoint: "producer"
+            })
+        })
+})
+
+// Streaming Platforms
+router.get('/streaming_platform', (req, res)=> {
+    const url = 'http://localhost:3001/api/streaming_platform'
+    const pageData = paginationResults(req)
+    let programArr = []
+
+    axios.get(url)
+        .then(resp => {
+            const programArrData = buildProgramArr(resp.data, programArr, pageData.startIdx, pageData.endIdx, pageData.page)
+
+            //console.log(programArrData)
+            res.render('pages/streaming_platform', {
+                title: "streaming platforms",
+                name: "All Streaming Platforms",
+                data: programArrData.arr,
+                prev: programArrData.prev,
+                next: programArrData.next,
+                endpoint: "streaming_platform"
             })
         })
 })

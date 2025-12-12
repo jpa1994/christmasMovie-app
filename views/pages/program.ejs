@@ -12,6 +12,13 @@
                     <a href="/<%= endpoint %>?page=<%= next %>">next</a>
                 <% } %>
             </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <h3>Filter by Rating:</h3>
+                    <a href="/program/TV-Y" class="btn btn-sm btn-primary">TV-Y Programs</a>
+                </div>
+            </div>
+
         </div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
         <% data.forEach(program => { %>
@@ -29,7 +36,7 @@
                         <p class="card-text"><strong>Year Released:</strong> <%= program.yr_released %></p>
                         <p class="card-text"><strong>Runtime:</strong> <%= program.runtime %></p>
                         <p class="card-text"><strong>Format:</strong> <%= program.format %></p>
-                        <p class="card-text"><strong>Rating:</strong> <%= program.program_rating %></p>
+                        <p class="card-text"><strong>Program Rating:</strong> <%= program.program_rating %></p>
                         <p class="card-text"><strong>IMDB Rating:</strong> <%= program.rating %></p>
                         <p class="card-text"><strong>Producer:</strong> <%= program.producer_name %></p>
                         <p class="card-text"><strong>Description:</strong> <%= program.description %></p>

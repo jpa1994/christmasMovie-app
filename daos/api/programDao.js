@@ -25,9 +25,12 @@ const programDao = {
     },
 
     findProgramRatingTV_Y: (res, table)=> {
-
-        const sql = `SELECT p.program_id, p.title, p.program_rating
-        FROM program AS p
+        const sql = `SELECT p.program_id, p.title, p.yr_released, p.runtime, p.producer_id, p.format, p.program_rating, p.rating, p.img_url,
+            p.description,
+            CONCAT(pr.first_name, ' ', pr.last_name) AS producer_name
+        FROM program p
+        LEFT JOIN producer pr
+        ON p.producer_id = pr.producer_id
         WHERE p.program_rating = 'TV-Y';`
 
         con.query(
