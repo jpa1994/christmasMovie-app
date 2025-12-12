@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+
+<main class="main" id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col align-self-end">
+                <% if (prev != null) { %>
+                    <a href="/<%= endpoint %>?page=<%= prev %>">prev</a>
+                <% } %>
+
+                <% if (next != null) { %>
+                    <a href="/<%= endpoint %>?page=<%= next %>">next</a>
+                <% } %>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% data.forEach(program => { %>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">
+                            <figure>
+                                <img src="<%= program.img_url %>" alt="Christmas program poster of <%= program.title %>" class="img-fluid">
+                            </figure>
+                            <%= program.title %>
+                        </h2>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-text"><strong>Year Released:</strong> <%= program.yr_released %></p>
+                        <p class="card-text"><strong>Runtime:</strong> <%= program.runtime %></p>
+                        <p class="card-text"><strong>Format:</strong> <%= program.format %></p>
+                        <p class="card-text"><strong>Rating:</strong> <%= program.program_rating %></p>
+                        <p class="card-text"><strong>IMDB Rating:</strong> <%= program.rating %></p>
+                        <p class="card-text"><strong>Producer:</strong> <%= program.producer_name %></p>
+                        <p class="card-text"><strong>Description:</strong> <%= program.description %></p>
+
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+
+
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

@@ -1,10 +1,8 @@
 const router = require('express').Router()
-
 const { programDao: dao} = require('../../daos/dao')
 
 // http://localhost:3001/api/program
 router.get('/', (req, res)=> {
-    // dao.findAll(req, res, dao.table)
     dao.findProgramInfo(res, dao.table)
 })
 

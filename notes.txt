@@ -1,0 +1,11 @@
+<div class="row">
+            <div class="col align-self-end">
+                <% if (prev != null) { %>
+                    <a href="/api/<%= endpoint %>?page=<%= prev %>">prev</a>
+                <% } %>
+
+                <% if (next != null) { %>
+                    <a href="/api/<%= endpoint %>?page=<%= next %>">next</a>
+                <% } %>
+            </div>
+        </div>

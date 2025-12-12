@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+ <!-- currently does not work -->
+<main class="main" id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <% if (id != 1) { %>
+                    <p class="prev-text">
+                        <a href="/<%= endpoint %>/<%= prev %>" class="prev-length">
+                            &lt;prev
+                        </a>
+                    </p>
+                <% } %>
+            </div>
+            <div class="col-8">
+                <figure>
+                    <img src="<%= program.img_url %>" alt='Image of <%= program.title %>' class="d-block img-fluid mx-auto rounded">
+                    <figcaption class="display-1 text-center"><%= program.title %></figcaption>
+                </figure>
+                <p>
+                    <strong>Year Released:</strong> <%= program.yr_released %> <br>
+                    <strong>Runtime:</strong> <%= program.runtime %> <br>
+                    <strong>Format:</strong> <%= program.format %> <br>
+                    <strong>Rating:</strong> <%= program.program_rating %> <br>
+                    <strong>Producer ID:</strong> <%= program.producer_id %>
+                </p>
+            </div>    
+            <div class="col-2">
+                <% if (id != 388) { %>
+                    <p class="next-text">
+                        <a href="/<%= endpoint %>/<%= next %>" class="next-length">
+                            next&gt;
+                        </a>
+                    </p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

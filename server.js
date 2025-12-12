@@ -15,8 +15,10 @@ server.use(helmet.contentSecurityPolicy({
     crossOriginResourcePolicy: false,
     crossOriginResourcePolicy: false,
     directives: {
-        "img-src": ["'self'", "https: data"],
+        "img-src": ["'self'", "https:", "http:", "data:"],
         "scriptSrc": ["'self'", "cdn.jsdeliver.net"]
+        //"script-src": ["'self'", "http://cdn.jsdelivr.net", "https://cdn.jsdelivr.net"]
+
     }
 }))
 
@@ -26,6 +28,9 @@ server.use(express.urlencoded({ extended: true}))
 
 // Using ejs as my view engine
 server.set('view engine', 'ejs')
+
+server.get('/favicon.ico', (req, res) => res.status(204));
+
 
 // localhost:3001
 server.use('/', router)
