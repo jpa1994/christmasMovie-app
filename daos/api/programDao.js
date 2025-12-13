@@ -24,6 +24,7 @@ const programDao = {
         )
     },
 
+    // the original submitted on time version  (before the filter TV-Y button existed) had less info
     findProgramRatingTV_Y: (res, table)=> {
         const sql = `SELECT p.program_id, p.title, p.yr_released, p.runtime, p.producer_id, p.format, p.program_rating, p.rating, p.img_url,
             p.description,
