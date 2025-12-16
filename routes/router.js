@@ -43,6 +43,29 @@ router.get('/program/TV-Y', (req, res) => {
 
     axios.get(url)
         .then(resp => {
+            const programArrData = buildProgramArr(resp.data, programArr, pageData.startIdx, pageData.endIdx, pageData.page)
+
+            res.render('pages/program', {
+                title: 'Programs Rated TV-Y',
+                name: 'TV-Y Programs',
+                data: programArrData.arr,
+                prev: programArrData.prev,
+                next: programArrData.next,
+                endpoint: 'program'
+            })
+        })
+})
+
+// Search program
+router.get('/program/search/:column/:query', (req, res) => {
+    const { column, query } = req.params;
+
+    const url = `http://localhost:3001/api/program/search/${column}/${query}`;
+    const pageData = paginationResults(req);
+    let programArr = [];
+
+    axios.get(url)
+        .then(resp => {
             const programArrData = buildProgramArr(
                 resp.data,
                 programArr,
@@ -52,8 +75,8 @@ router.get('/program/TV-Y', (req, res) => {
             );
 
             res.render('pages/program', {
-                title: 'Programs Rated TV-Y',
-                name: 'TV-Y Programs',
+                title: 'Program Search',
+                name: `Search Results`,
                 data: programArrData.arr,
                 prev: programArrData.prev,
                 next: programArrData.next,
@@ -150,10 +173,10 @@ router.get('/streaming_platform', (req, res)=> {
         })
 })
 
-// Single program
-router.get('program/:id', (req, res)=> {
+// Single program (not working)
+router.get('/program/:id', (req, res)=> {
 
-    const id = parseInt(req.params.id, 10);
+    const id = req.params.id
 
     // const id = req.params.id
     const url = `http://localhost:3001/api/program/${id}`
